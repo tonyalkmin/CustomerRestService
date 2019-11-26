@@ -19,9 +19,9 @@ public class LoadDatabase {
 	@Bean
     CommandLineRunner initDatabase(CustomerRepository repository) {
 	    return args -> {
-	    	log.info("Preloading " + repository.save(new Customer.CustomerBuilder().id(1l).name("Patricia Halfway").description("Customer 1").createdDate(new Date()).lastUpdated(new Date()).activated(true).createCustomer() ) );
-	    	log.info("Preloading " + repository.save(new Customer.CustomerBuilder().id(2l).name("Anthony O'Rourke").description("Customer 2").createdDate(new Date()).lastUpdated(new Date()).activated(true).createCustomer() ) );
-	    	log.info("Preloading " + repository.save(new Customer.CustomerBuilder().id(3l).name("Thomas Simpson").description("Customer 3").createdDate(new Date()).lastUpdated(new Date()).activated(true).createCustomer() ) );
+	    	log.info("Preloading " + repository.save(Customer.builder().id(1l).name("Patricia Halfway").description("Customer 1").activated(true).build() ) );
+	    	log.info("Preloading " + repository.save(Customer.builder().id(2l).name("Anthony O'Rourke").description("Customer 2").activated(true).build() ) );
+	    	log.info("Preloading " + repository.save(Customer.builder().id(3l).name("Thomas Simpson").description("Customer 3").activated(true).build() ) );
 	    };
 	}
 }

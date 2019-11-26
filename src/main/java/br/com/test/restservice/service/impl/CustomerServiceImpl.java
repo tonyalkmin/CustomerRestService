@@ -1,20 +1,16 @@
 package br.com.test.restservice.service.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
-
 import br.com.test.restservice.data.entity.Customer;
 import br.com.test.restservice.data.repository.CustomerRepository;
 import br.com.test.restservice.service.ICustomerService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Pequena Camada de Servicos para agregar regra de Negocio
+ * Pequena Camada de Servicos para agregar regras de Negocio
  * @author Tony
  *
  */
@@ -55,7 +51,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public void deleteById(Long id) {
 		if (id == null) {
-			log.error("id is required");
+			log.error("deleteById - id is required");
 			return;
 		}
 		repository.deleteById(id);
@@ -74,17 +70,10 @@ public class CustomerServiceImpl implements ICustomerService {
 			return null;
 		}
 		
-		if (newCustomer.getId() == null) {
-			log.error("replace - id customer is Required");
-			return null;
-		}
-
 		return repository.findById(id)
 	      .map(customer -> {
 	    	  customer.setName(newCustomer.getName());
 	    	  customer.setDescription(newCustomer.getDescription());
-	    	  customer.setCreatedDate(new Date());
-	    	  customer.setLastUpdated(new Date());
 	    	  customer.setActivated(true);
 	        return repository.save(customer);
 	      })
